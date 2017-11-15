@@ -3,5 +3,5 @@ class Owner < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :events
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable
 end
