@@ -10,10 +10,20 @@
         <h1>レンタル店舗検索アプリ</h1><br>
       </div>
         <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
-          <%= link_to "借りたい店舗やスペースを検索する",  new_user_session_path,  class: 'btn btn-primary btn-lg btn-block'%><br><br><br>
+          <% if user_signed_in? %>
+            <%= link_to "借りたい人のマイページへ",  events_path,  class: 'btn btn-primary btn-lg btn-block'%><br><br><br>
+            <%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-lg btn-block'%>
+          <% elsif !owner_signed_in? %>
+            <%= link_to "店舗やスペースを借りたい人ログイン",  new_user_session_path,  class: 'btn btn-primary btn-lg btn-block'%><br><br><br>
+          <% end %>
         </div>
         <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
-          <%= link_to "貸したい店舗やスペースを登録する",  new_owner_session_path,  class: 'btn btn-danger btn-lg btn-block'%>
+          <% if owner_signed_in? %>
+            <%= link_to "貸したい人のマイページへ",  events_path,  class: 'btn btn-danger btn-lg btn-block'%><br><br><br>
+            <%= link_to "ログアウト",  destroy_owner_session_path, method: :delete, class: 'btn btn-danger btn-lg btn-block'%>
+          <% elsif !user_signed_in? %>
+            <%= link_to "店舗やスペースを貸したい人ログイン",  new_owner_session_path,  class: 'btn btn-danger btn-lg btn-block'%>
+          <% end %>
         </div>
       </div>
   </section>

@@ -33,7 +33,8 @@ class EventsController < ApplicationController
     @event = Event.new(events_params)
     @event.owner_id = current_owner.id
     if @event.save
-      redirect_to events_path
+      NoticeMailer.sendmail_event(@event).deliver
+      redirect_to events_path, notice: "店舗またはスペース情報が登録されました！"
     else
       render 'new'
     end
