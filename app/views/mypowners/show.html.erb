@@ -1,0 +1,23 @@
+<section class="function container-fluid">
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
+      <% @mypowners.each do |mypowner| %>
+        <div class="panel panel-danger">
+          <% if mypowner.owner == current_owner%>
+            <div class="panel-heading">
+              <h3><%= mypowner.owner_name %> 様の登録情報</h3>
+            </div>
+            <div class="panel-body">
+              住所：<br><%= mypowner.owner_address %><br><br>
+              銀行口座：<br><%= mypowner.owner_bank_account %>
+            </div>
+              <div class="panel-footer">
+                <%= link_to "マイページへ戻る", mypowners_path, class: 'btn btn-danger btn-sm' %>
+                <%= link_to "登録情報の編集", edit_mypowner_path(mypowner.id), class: 'btn btn-danger btn-sm' %>
+              </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

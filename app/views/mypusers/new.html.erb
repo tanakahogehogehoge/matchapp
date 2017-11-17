@@ -1,0 +1,20 @@
+<h1>個人情報入力欄</h1>
+<br>
+<section class="function container-fluid">
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
+      <%= form_for(@mypuser) do |f| %>
+        <h3>氏名</h3>
+        <%= f.text_area :user_address, :size=>"50x1" , class: 'form-control' %>
+        <h3>住所</h3>
+        <%= f.text_area :user_address, :size=>"50x5", class: 'form-control' %>
+        <br>
+        <h3>登録銀行口座</h3>
+        <%= f.text_area :user_bank_account, :size=>"50x1", class: 'form-control' %>
+        <br>
+        <br>
+        <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</section>

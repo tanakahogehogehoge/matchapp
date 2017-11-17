@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'mypowners' => 'mypowners#index'
+  get 'mypusers'   => 'mypusers#index'
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  root 'top#index'
+
   devise_for :owners, controllers: {
   sessions:      'owners/sessions',
   passwords:     'owners/passwords',
@@ -17,6 +23,9 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
+
+  resources :mypusers
+  resources :mypowners
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -71,5 +80,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  root 'top#index'
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

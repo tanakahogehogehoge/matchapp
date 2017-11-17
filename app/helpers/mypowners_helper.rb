@@ -1,0 +1,2 @@
+module MypownersHelper
+end

@@ -31,7 +31,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(events_params)
-    @event.owner_id = current_owner.id
     if @event.save
       NoticeMailer.sendmail_event(@event).deliver
       redirect_to events_path, notice: "店舗またはスペース情報が登録されました！"
@@ -47,7 +46,7 @@ class EventsController < ApplicationController
 
   private
   def events_params
-    params.require(:event).permit(:store_address, :store_picture, :store_info, :store_info_sub)
+    params.require(:event).permit(:store_address, :image, :store_info, :store_info_sub)
   end
 
   def set_event
