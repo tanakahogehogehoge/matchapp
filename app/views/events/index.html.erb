@@ -1,5 +1,8 @@
 <h1>登録物件一覧</h1>
-<%= link_to "店舗またはスペースを登録する", new_event_path, class: 'btn btn-default btn-sm btn-info' %>
+<% if owner_signed_in? %>
+  <%= link_to "店舗またはスペースを登録する", new_event_path, class: 'btn btn-info btn-block' %>
+<% end %>
+
 <br><br>
 <section class="function container-fluid">
     <div class="row">

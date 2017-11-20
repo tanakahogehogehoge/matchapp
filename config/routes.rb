@@ -24,8 +24,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :mypusers
-  resources :mypowners
+  resources :mypusers, only: [:index, :new, :create, :edit, :update, :show] do
+    collection do
+      post :confirm
+    end
+  end
+
+  resources :mypowners, only: [:index, :new, :create, :edit, :update, :show] do
+    collection do
+      post :confirm
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

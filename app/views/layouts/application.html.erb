@@ -7,7 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <% if user_signed_in? %>
+    <span><%= link_to 'ホームへ', mypusers_path, class: 'btn btn-primary btn-sm' %></span>
+    <span><%= link_to 'ログアウトへ', destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-sm' %></span>
+  <% elsif owner_signed_in?%>
+    <span><%= link_to 'ホームへ', mypowners_path, class: 'btn btn-danger btn-sm' %></span>
+    <span><%= link_to 'ログアウトへ', destroy_owner_session_path, method: :delete, class: 'btn btn-danger btn-sm' %></span>
+  <% end %>
 <%= yield %>
 
 </body>
