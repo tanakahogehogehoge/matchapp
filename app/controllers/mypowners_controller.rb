@@ -26,10 +26,15 @@ class MypownersController < ApplicationController
   end
 
   def new
-    if params[:back]
-      @mypowner = Mypowner.new(mypowners_params)
+    @mypowner = Mypowner.find_by(owner_id:current_owner.id)
+    if @mypowner.present?
+      redirect_to mypowners_path, notice:"すでにプロフィールを作成済みです！"
     else
-      @mypowner = Mypowner.new
+      if params[:back]
+        @mypowner = Mypowner.new(mypowners_params)
+      else
+        @mypowner = Mypowner.new
+      end
     end
   end
 
