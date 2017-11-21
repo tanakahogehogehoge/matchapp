@@ -1,6 +1,5 @@
 <h3>以下の内容で、登録する</h3>
-<div class="row">
-  <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
+
 <%= form_for(@mypowner) do |f| %>
   <!-- `f.hidden_field`を使用して、リクエストパラメータに値を設定できるようにしています。 -->
   <%= f.hidden_field :owner_name %>
@@ -17,7 +16,5 @@
   <%= f.hidden_field :owner_name %>
   <%= f.hidden_field :owner_address %>
   <%= f.hidden_field :owner_bank_account %>
-  <%= link_to '戻る', :back, name: 'back', class: 'btn btn-primary btn-sm' %>
+  <%=  f.submit "もどる", name: 'back' , class: 'btn btn-primary btn-sm' %>
 <% end %>
-  </div>
-</div>

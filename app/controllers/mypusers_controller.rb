@@ -3,8 +3,8 @@ class MypusersController < ApplicationController
   before_action :set_mypuser, only: [:edit, :update]
 
   def index
-    @mypusers = Mypuser.all
-    if @mypusers.present?
+    @mypuser = Mypuser.find_by(user_id:current_user.id)
+    if @mypuser.present?
 
     else
       redirect_to new_mypuser_path
@@ -22,13 +22,13 @@ class MypusersController < ApplicationController
   end
 
   def show
-    @mypuser = Mypuser.where(user_id:current_user.id)
+    @mypuser = Mypuser.find_by(user_id:current_user.id)
   end
 
   def new
-    @mypusers = Mypuser.all
-    if @mypusers.present?
-      redirect_to mypusers_path
+    @mypuser = Mypuser.find_by(user_id:current_user.id)
+    if @mypuser.present?
+      redirect_to mypusers_path, notice:"すでにプロフィールを作成済みです！"
     else
       if params[:back]
         @mypuser = Mypuser.new(mypusers_params)

@@ -2,21 +2,18 @@
 <section class="function container-fluid">
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
-
         <div class="panel panel-primary">
-
-            <div class="panel-heading">
-              <h3><%= @mypuser.user_name %> 様の登録情報</h3>
+          <div class="panel-heading">
+            <h3><%= @mypuser.user_name %> 様の登録情報</h3>
+          </div>
+          <div class="panel-body">
+            住所：<br><%= @mypuser.user_address %><br><br>
+            銀行口座：<br><%= @mypuser.user_bank_account %>
+          </div>
+            <div class="panel-footer">
+              <%= link_to "マイページへ戻る", mypusers_path, class: 'btn btn-primary btn-sm' %>
+              <%= link_to "登録情報の編集", edit_mypuser_path(@mypuser.id), class: 'btn btn-primary btn-sm' %>
             </div>
-            <div class="panel-body">
-              住所：<br><%= @mypuser.user_address %><br><br>
-              銀行口座：<br><%= @mypuser.user_bank_account %>
-            </div>
-              <div class="panel-footer">
-                <%= link_to "マイページへ戻る", mypusers_path, class: 'btn btn-primary btn-sm' %>
-                <%= link_to "登録情報の編集", edit_mypuser_path(mypuser.id), class: 'btn btn-primary btn-sm' %>
-              </div>
-
         </div>
     </div>
   </div>

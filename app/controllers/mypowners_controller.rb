@@ -3,8 +3,8 @@ class MypownersController < ApplicationController
   before_action :set_mypowner, only: [:edit, :update]
 
   def index
-    @mypowners = Mypowner.all
-    if @mypowners.present?
+    @mypowner = Mypowner.find_by(owner_id:current_owner.id)
+    if @mypowner.present?
 
     else
       redirect_to new_mypowner_path
@@ -22,19 +22,14 @@ class MypownersController < ApplicationController
   end
 
   def show
-    @mypowner = Mypowner.where(current_user_id)
+    @mypowner = Mypowner.find_by(owner_id:current_owner.id)
   end
 
   def new
-    @mypowners = Mypowner.all
-    if @mypowners.present?
-      redirect_to mypowners_path
+    if params[:back]
+      @mypowner = Mypowner.new(mypowners_params)
     else
-      if params[:back]
-        @mypowner = Mypowner.new(mypowners_params)
-      else
-        @mypowner = Mypowner.new
-      end
+      @mypowner = Mypowner.new
     end
   end
 
