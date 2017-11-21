@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
+    @search = Event.ransack(params[:q])
+    @Events = @search.result
     @events = Event.all
   end
 

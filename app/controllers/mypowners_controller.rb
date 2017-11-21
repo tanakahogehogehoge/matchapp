@@ -22,7 +22,7 @@ class MypownersController < ApplicationController
   end
 
   def show
-    @mypowners = Mypowner.all
+    @mypowner = Mypowner.where(current_user_id)
   end
 
   def new

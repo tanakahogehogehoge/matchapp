@@ -22,7 +22,7 @@ class MypusersController < ApplicationController
   end
 
   def show
-    @mypusers = Mypuser.all
+    @mypuser = Mypuser.where(user_id:current_user.id)
   end
 
   def new

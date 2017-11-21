@@ -2,6 +2,14 @@
 <% if owner_signed_in? %>
   <%= link_to "店舗またはスペースを登録する", new_event_path, class: 'btn btn-info btn-block' %>
 <% end %>
+<%= search_form_for @search do |f| %>
+  <%= f.label :store_address, "場所検索" %>
+  <%= f.search_field :store_address %>
+
+  # 検索ボタン
+  <div class="actions"><%= f.submit "検索" %></div>
+<% end %>
+@Events.store_address
 
 <br><br>
 <section class="function container-fluid">
@@ -18,7 +26,7 @@
 
             <div class="panel-body">
               物件紹介<br><%= event.store_info %><br><br>
-              物件写真<br><%= event.image %>
+              物件写真<br><%= image_tag(event.image) %>
             </div>
 
             <div class="panel-footer">
