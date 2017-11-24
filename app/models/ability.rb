@@ -7,8 +7,12 @@ class Ability
      can :manage, :all           # allow superadmins to do anything
     end
 
-    if user && user.user?
-      can read, all
+    if user.user?
+      can read, :all
+    end
+
+    if user.owner
+      can manage, :all
     end
     # Define abilities for the passed in user here. For example:
     #

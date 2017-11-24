@@ -1,0 +1,30 @@
+<section class="function container-fluid">
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
+      <%= form_for(@event, url: event_choose_new_or_edit) do |f| %>
+        <% if @event.errors.any? %>
+          <div id="error_explanation">
+            <ul>
+              <% @event.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <h3>店舗またはスペースの住所</h3>
+        <%= f.text_field :store_address, class: 'form-control', placeholder: "都道府県市区町村番地の順番で記入"%>
+          <br>
+        <h3>店舗またはスペース情報 </h3>
+        <%= f.text_area :store_info,  :size=>"90x10", placeholder: "業態（ラーメン、焼肉、空きスペース）や店舗の座席数などを詳しく記載" %>
+          <br>
+        <h3>店舗またはスペースの画像</h3>
+        <%= f.file_field :image, class: 'form-control'%>
+          <br>
+        <h3>店舗またはスペースについての備考</h3>
+        <%= f.text_field :store_info_sub, class: 'form-control', placeholder: "情報以外で備考があれば記載、なければ空白でも可" %>
+        <br>
+        <%= f.submit '登録', class: 'btn btn-info btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</section>

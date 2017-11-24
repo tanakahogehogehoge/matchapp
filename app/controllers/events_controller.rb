@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(events_params)
+    @event = Event.create(events_params)
     @event.owner_id = current_owner.id
     if @event.save
       NoticeMailer.sendmail_event(@event).deliver
@@ -45,6 +45,10 @@ class EventsController < ApplicationController
   def confirm
     @event = Event.new(events_params)
     render 'new' if @event.invalid?
+  end
+
+  def apply
+
   end
 
   private

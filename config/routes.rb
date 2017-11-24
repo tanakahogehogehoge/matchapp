@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'pictures/index'
+
   get 'mypowners' => 'mypowners#index'
   get 'mypusers'   => 'mypusers#index'
 
@@ -9,7 +11,8 @@ Rails.application.routes.draw do
   devise_for :owners, controllers: {
   sessions:      'owners/sessions',
   passwords:     'owners/passwords',
-  registrations: 'owners/registrations'
+  registrations: 'owners/registrations',
+  omniauth_callbacks: "owners/omniauth_callbacks"
   }
 
   devise_for :users, controllers: {
@@ -18,7 +21,11 @@ Rails.application.routes.draw do
   registrations: 'users/registrations'
   }
 
-  resources :events, only: [:index, :new, :create, :edit, :update ,:destroy] do
+  resources :events, only: [:index, :new, :create, :edit, :update ,:destroy, :show] do
+    member do
+      get 'apply'
+    end
+
     collection do
       post :confirm
     end

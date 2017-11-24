@@ -1,5 +1,6 @@
 body {
   text-align: center;
+
   background-image: url(top.jpg);
 /* 画像を常に天地左右の中央に配置 */
   background-position: center center;
@@ -14,17 +15,5 @@ body {
   background-size: cover;
 
  /* 背景画像が読み込まれる前に表示される背景のカラー */
-  background-color: #464646;
-}
-
-h1{
-  color: black;
-}
-
-h2{
-  color: black;
-}
-
-h3{
-  color: black;
+  background-color: #fff;
 }

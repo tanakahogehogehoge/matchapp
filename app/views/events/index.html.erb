@@ -1,27 +1,33 @@
 <h1>登録物件一覧</h1>
 <% if owner_signed_in? %>
-  <%= link_to "店舗またはスペースを登録する", new_event_path, class: 'btn btn-info btn-block' %>
+  <%= link_to "店舗またはスペースを登録する", new_event_path, class: 'btn btn-info btn-lg' %>
+  <br><br>
 <% end %>
 <%= search_form_for @search do |f| %>
   <%= f.label :store_address, "場所検索" %>
   <%= f.search_field :store_address %>
 
-  # 検索ボタン
   <div class="actions"><%= f.submit "検索" %></div>
 <% end %>
-@Events.store_address
 
 <br><br>
 <section class="function container-fluid">
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
         <% @events.each do |event| %>
-
           <div class="panel panel-default">
             <div class="panel-heading">
-              <%= link_to "編集", edit_event_path(event.id), class: 'btn btn-info btn-sm btn-primary' %>
-              <%= link_to "削除", event_path(event.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %><br>
+              <% if owner_signed_in? %>
+                <% if current_owner.id == event.owner_id %>
+                  <%= link_to "編集", edit_event_path(event.id), class: 'btn btn-sm btn-primary' %>
+                  <%= link_to "削除", event_path(event.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-sm btn btn-danger' %><br>
+                <% end %>
+              <% end %>
               物件住所：<%= event.store_address %>
+              <% if user_signed_in? %>
+                <%= link_to "物件の申込み",  apply_event_path(event.id), class: 'btn btn-sm btn btn-primary' %>
+                <%= link_to "物件詳細", event_path(event.id), class: 'btn btn-sm btn btn-info' %>
+              <% end %>
             </div>
 
             <div class="panel-body">
@@ -30,10 +36,9 @@
             </div>
 
             <div class="panel-footer">
-              物件備考<br><%= event.store_info_sub %>
+              物件備考<br><%= event.store_info_sub %><br>
               オーナ様番号:<% event.owner_id %>
             </div>
-
           </div>
         <% end %>
       </div>
