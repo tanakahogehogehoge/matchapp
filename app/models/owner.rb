@@ -23,6 +23,8 @@ class Owner < ActiveRecord::Base
            end
            owner
          end
+         
+    mount_uploader :avatar, AvatarUploader
 
     def update_with_password(params, *options)
       if provider.blank?

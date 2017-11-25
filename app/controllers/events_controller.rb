@@ -1,10 +1,11 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :apply]
 
   def index
     @search = Event.ransack(params[:q])
     @Events = @search.result
     @events = Event.all
+
   end
 
   def new
@@ -32,7 +33,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(events_params)
+    @event = Event.new(events_params)
+    @event.image.retrieve_from_cache! params[:cache][:image]
     @event.owner_id = current_owner.id
     if @event.save
       NoticeMailer.sendmail_event(@event).deliver
@@ -48,12 +50,12 @@ class EventsController < ApplicationController
   end
 
   def apply
-
+    binding.pry
   end
 
   private
   def events_params
-    params.require(:event).permit(:store_address, :image, :store_info, :store_info_sub)
+    params.require(:event).permit(:store_address, :image, :image_cache, :store_info, :store_info_sub)
   end
 
   def set_event

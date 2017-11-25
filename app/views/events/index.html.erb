@@ -25,8 +25,7 @@
               <% end %>
               物件住所：<%= event.store_address %>
               <% if user_signed_in? %>
-                <%= link_to "物件の申込み",  apply_event_path(event.id), class: 'btn btn-sm btn btn-primary' %>
-                <%= link_to "物件詳細", event_path(event.id), class: 'btn btn-sm btn btn-info' %>
+                <%= link_to "物件の詳細と申し込み",  apply_event_path(event.id), class: 'btn btn-sm btn btn-primary' %>
               <% end %>
             </div>
 

@@ -6,7 +6,7 @@
         <%= form_for(@event) do |f| %>
           <%= f.hidden_field :store_address %>
           <%= f.hidden_field :store_info %>
-          <%= f.hidden_field :image %>
+          <%= f.hidden_field :image_cashe %>
           <%= f.hidden_field :store_info_sub %>
 
           <div class="panel panel-default">
@@ -16,7 +16,8 @@
 
             <div class="panel-body">
               物件紹介<br><%= @event.store_info %><br><br>
-              物件写真<br><%= @event.image %>
+              物件写真<br><%= image_tag(@event.image)%>
+              <%= hidden_field_tag :"cache[image]", @event.image.cache_name %>
             </div>
 
             <div class="panel-footer">
@@ -31,7 +32,7 @@
         <%= form_for(@event, url: new_event_path, method: 'get') do |f| %>
           <%= f.hidden_field :store_address %>
           <%= f.hidden_field :store_info %>
-          <%= f.hidden_field :image %>
+          <%= f.hidden_field :image_cashe %>
           <%= f.hidden_field :store_info_sub %>
           <%= f.submit "前の画面に戻る", name: 'back' , class: 'btn btn-info btn-block' %>
         <% end %>

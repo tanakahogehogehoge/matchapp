@@ -1,22 +1,26 @@
-<h1>物件申込み欄</h1><br>
+<h1>物件詳細情報と申込み欄</h1><br>
 <section class="function container-fluid">
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
+        <% if user_signed_in? %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <% @event.store_info %>
+            </div>
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            
+            <div class="panel-body">
+              <% @event.store_address %>
+              <% image_tag(@event.image) %>
+            </div>
+
+            <div class="panel-footer">
+              <% @event.store_info_sub %>
+            </div>
           </div>
-        </div>
-
-        <div class="panel-body">
-
-        </div>
-
-        <div class="panel-footer">
-
-        </div>
-
-      </div>
+      <% end %>
+      <% if owner_signed_in? %>
+        申込みはユーザ様のみです
+      <% end %>
     </div>
+  </div>
 </section>
