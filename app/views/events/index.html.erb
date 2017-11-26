@@ -25,7 +25,7 @@
               <% end %>
               物件住所：<%= event.store_address %>
               <% if user_signed_in? %>
-                <%= link_to "物件の詳細と申し込み",  apply_event_path(event.id), class: 'btn btn-sm btn btn-primary' %>
+                <%= link_to "物件の詳細と申込み",  apply_event_path(event.id), class: 'btn btn-sm btn btn-primary' %>
               <% end %>
             </div>
 
@@ -36,7 +36,7 @@
 
             <div class="panel-footer">
               物件備考<br><%= event.store_info_sub %><br>
-              オーナ様番号:<% event.owner_id %>
+              オーナ様番号:<%= event.owner_id %>
             </div>
           </div>
         <% end %>

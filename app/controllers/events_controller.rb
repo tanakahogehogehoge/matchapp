@@ -50,7 +50,6 @@ class EventsController < ApplicationController
   end
 
   def apply
-    binding.pry
   end
 
   private

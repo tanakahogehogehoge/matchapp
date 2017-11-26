@@ -1,20 +1,22 @@
-<h1>物件詳細情報と申込み欄</h1><br>
+<h1>物件詳細情報と申込み欄</h1>
 <section class="function container-fluid">
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
         <% if user_signed_in? %>
           <div class="panel panel-default">
             <div class="panel-heading">
-              <% @event.store_info %>
+              店舗詳細：<%= @event.store_info %>
             </div>
 
             <div class="panel-body">
-              <% @event.store_address %>
-              <% image_tag(@event.image) %>
+              店舗住所：<%= @event.store_address %><br>
+              店舗画像<%= image_tag(@event.image) %>
             </div>
 
             <div class="panel-footer">
-              <% @event.store_info_sub %>
+              店舗備考：<%= @event.store_info_sub %>
+              オーナー様番号：<%= @event.owner_id %>
+              <%= link_to "物件申込み",  event_path, class: 'btn btn-sm btn btn-primary' %>
             </div>
           </div>
       <% end %>
