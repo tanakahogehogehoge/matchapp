@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   end
 
   resources :mypusers, only: [:index, :new, :create, :edit, :update, :show] do
+    member do
+      get 'apply_store'
+    end
+    
     collection do
       post :confirm
     end

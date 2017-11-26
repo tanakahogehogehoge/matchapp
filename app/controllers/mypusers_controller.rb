@@ -46,6 +46,11 @@ class MypusersController < ApplicationController
     redirect_to mypuser_path
   end
 
+  def apply_store
+    @mypuser.store_apply_id = params[:event_id]
+    binding.pry
+  end
+
   def confirm
     @mypuser = Mypuser.new(mypusers_params)
     render :new if @mypuser.invalid?
@@ -54,7 +59,7 @@ class MypusersController < ApplicationController
   private
 
   def mypusers_params
-    params.require(:mypuser).permit(:user_name, :user_address, :user_bank_account)
+    params.require(:mypuser).permit(:user_name, :user_address, :user_bank_account, :store_apply_id)
   end
 
   def set_mypuser
