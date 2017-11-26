@@ -1,1 +1,21 @@
+<section class="function container-fluid">
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <%= @event.store_address %>
+        </div>
 
+        <div class="panel-body">
+          物件紹介<br><%= @event.store_info %><br><br>
+          物件写真<br><%= image_tag(@event.image) %>
+        </div>
+
+        <div class="panel-footer">
+          物件備考<br><%= @event.store_info_sub %><br>
+          オーナ様番号:<%= @event.owner_id %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -47,8 +47,13 @@ class MypusersController < ApplicationController
   end
 
   def apply_store
-    @mypuser.store_apply_id = params[:event_id]
-    binding.pry
+    @mypuser = Mypuser.find_by(user_id:current_user.id)
+    if @mypuser.store_apply_id == nil
+      @mypuser.store_apply_id = params[:event_id]
+      @event= Event.find(params[:event_id])
+    else
+      redirect_to mypusers_path, notice:"すでに物件を申し込み済みです！"
+    end
   end
 
   def confirm
