@@ -16,6 +16,12 @@
             オーナ様番号:<%= @event.owner_id %>
           </div>
         </div>
+        <p>コメント一覧</p>
+        <div id="comments_area">
+          <%= render partial: 'comments/index', locals: { comments: @comments, event: @event } %>
+        </div>
+          <%= render partial: 'comments/form', locals: { comment: @comment, event: @event } %>
+          <%= link_to '戻る', events_path %>
       </div>
     </div>
 </section>

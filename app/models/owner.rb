@@ -1,6 +1,7 @@
 class Owner < ActiveRecord::Base
-   has_one :mypowner, dependent: :destroy
-   has_many :events
+  has_one :mypowner, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :comments, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -23,7 +24,7 @@ class Owner < ActiveRecord::Base
            end
            owner
          end
-         
+
     mount_uploader :avatar, AvatarUploader
 
     def update_with_password(params, *options)

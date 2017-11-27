@@ -51,6 +51,7 @@ class MypusersController < ApplicationController
     if @mypuser.store_apply_id == nil
       @mypuser.store_apply_id = params[:event_id]
       @event= Event.find(params[:event_id])
+      @mypuser.save
     else
       redirect_to mypusers_path, notice:"すでに物件を申し込み済みです！"
     end

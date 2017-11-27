@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'pictures/index'
-
   get 'mypowners' => 'mypowners#index'
   get 'mypusers'   => 'mypusers#index'
 
@@ -21,7 +19,7 @@ Rails.application.routes.draw do
   registrations: 'users/registrations'
   }
 
-  resources :events, only: [:index, :new, :create, :edit, :update ,:destroy, :show] do
+  resources :events do
     member do
       get 'apply'
     end
@@ -29,13 +27,16 @@ Rails.application.routes.draw do
     collection do
       post :confirm
     end
+
+    resources :comments
+    post :confirm, on: :collection
   end
 
   resources :mypusers, only: [:index, :new, :create, :edit, :update, :show] do
     member do
       get 'apply_store'
     end
-    
+
     collection do
       post :confirm
     end

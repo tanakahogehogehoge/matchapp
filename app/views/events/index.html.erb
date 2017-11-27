@@ -23,7 +23,10 @@
                   <%= link_to "削除", event_path(event.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-sm btn btn-danger' %><br>
                 <% end %>
               <% end %>
-              物件住所：<%= event.store_address %>
+              <%= link_to event_path(event) do %>
+                物件ID: <%= event.id %>
+              <% end %>
+                物件住所：<%= event.store_address %>
               <% if user_signed_in? %>
                 <%= link_to "物件の詳細と申込み",  apply_event_path(event.id), class: 'btn btn-sm btn btn-primary' %>
               <% end %>
